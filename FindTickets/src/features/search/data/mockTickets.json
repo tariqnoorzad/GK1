@@ -3,7 +3,7 @@
     "id": "t1",
     "title": "Drake – Royal Arena",
     "city": "København",
-    "dateTime": "2025-10-05T20:00:00",
+    "dateTime": "2025-10-20T20:00:00",
     "price": 650,
     "isVerified": true,
     "category": "music"
@@ -12,7 +12,7 @@
     "id": "t2",
     "title": "FC København vs Brøndby",
     "city": "København",
-    "dateTime": "2025-10-08T18:00:00",
+    "dateTime": "2025-10-20T18:00:00",
     "price": 250,
     "isVerified": false,
     "category": "sport"
@@ -40,7 +40,7 @@
     "id": "t5",
     "title": "Stand-up: Simon Talbot – Comedy Night",
     "city": "Odense",
-    "dateTime": "2025-09-28T21:00:00",
+    "dateTime": "2025-10-28T21:00:00",
     "price": 200,
     "isVerified": false,
     "category": "comedy"
