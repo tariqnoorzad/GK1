@@ -1,4 +1,7 @@
 // src/features/search/screens/SearchCategoriesScreen.js
+// Dette er "forsiden" for søgedelen af appen.
+// Her kan brugeren vælge mellem forskellige kategorier (Find, Sælg, Partnere).
+// Skærmen viser også populære events og samarbejdspartnere.
 import React, { useMemo } from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,10 +10,12 @@ import CategoryCard from '../components/CategoryCard';
 import cats from '../data/categories.json';
 import tickets from '../data/mockTickets.json';
 
+// Entry categories = de 3 kort øverst, altså vi trækker "entry"-kategorierne (Find, Sælg, Partnere) ud af JSON-filen
 const entryCats = cats.entry;
 
 export default function SearchCategoriesScreen({ navigation }) {
-  // simple “popular right now” = de næste 5 events kronologisk
+  // Her vil vi udregne de 5 næste events i tid, som bruges til at fremvise "Populært lige nu" for brugeren.
+  // useMemo sikrer, at vi kun genberegner denne liste, hvis 'tickets' ændrer sig.
   const popular = useMemo(() => {
     return [...tickets]
       .sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime))
@@ -22,7 +27,7 @@ export default function SearchCategoriesScreen({ navigation }) {
   return (
     <SafeAreaView style={gs.screen} edges={['top','bottom']}>
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 40 }}>
-        {/* HERO */}
+        {/* HERO */} 
         <View>
           <Text style={gs.h1}>Event Now</Text>
           <Text style={[gs.muted, { marginTop: 6 }]}>
@@ -36,7 +41,7 @@ export default function SearchCategoriesScreen({ navigation }) {
           </Pressable>
         </View>
 
-        {/* QUICK LINKS (3 kort i grid) */}
+        {/* QUICK LINKS */}
         <View style={gs.section}>
           <Text style={gs.title}>EVENT NOW</Text>
           <View style={{ marginTop: 12, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
@@ -47,7 +52,7 @@ export default function SearchCategoriesScreen({ navigation }) {
                 onPress={() =>
                   item.id === 'search'
                     ? navigation.navigate('Search/Results')
-                    : alert('Kommer snart')
+                    : alert('Kommer snart') // Denne del af appen er ikke implementeret endnu og derfor vil vi bare vise en alert
                 }
               />
             ))}

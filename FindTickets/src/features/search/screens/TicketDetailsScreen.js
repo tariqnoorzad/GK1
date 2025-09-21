@@ -1,3 +1,8 @@
+// Denne fil viser detaljer for en valgt billet/event.
+// Den henter billetdata baseret på ID'et, der sendes via navigationen.
+// Hvis billetten ikke findes, vises en "Ticket not found" besked.
+// Hvis billetten findes, vises detaljer som titel, by, dato, pris og andre metadata.
+// Der er også en "Buy securely" knap, som i denne stub blot viser en alert.
 import React from 'react';
 import { ScrollView, View, Text, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -5,15 +10,17 @@ import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 import { gs } from '../../../styles/globalstyle';
 import data from '../data/mockTickets.json';
 
+// Hjælpefunktioner til datoformatering
 function formatShort(dt) {
   return new Date(dt).toLocaleDateString('da-DK', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
 }
-function formatLong(dt) {
+function formatLong(dt) { 
   return new Date(dt).toLocaleString('da-DK', { weekday: 'short', day: '2-digit', month: 'long', hour: '2-digit', minute: '2-digit' });
 }
 
+// Komponent til at vise en række med ikon og tekst
 function MetaItem({ icon, children }) {
-  return (
+  return ( 
     <View style={gs.metaRow}>
       <Icon name={icon} size={18} color="#B8BDC7" />
       <Text style={gs.metaValue}>{children}</Text>
@@ -21,8 +28,13 @@ function MetaItem({ icon, children }) {
   );
 }
 
+// Hovedkomponenten for TicketDetailsScreen
+// Modtager 'route' prop for at få adgang til navigationens parametre
+// Finder billetten baseret på ID'et fra route.params
 export default function TicketDetailsScreen({ route }) {
-  const ticket = data.find(t => t.id === route.params?.id);
+  const ticket = data.find(t => t.id === route.params?.id); // Finder billetten baseret på ID fra navigationens parametre
+
+  // Hvis billetten ikke findes, vis en "Ticket not found" besked
   if (!ticket) {
     return (
       <SafeAreaView style={gs.screen}>
@@ -33,6 +45,7 @@ export default function TicketDetailsScreen({ route }) {
     );
   }
 
+  // Hvis billetten findes, vis dens detaljer
   return (
     <SafeAreaView style={gs.screen} edges={['top','bottom']}>
       {/* Scrollbart indhold */}
@@ -89,7 +102,7 @@ export default function TicketDetailsScreen({ route }) {
         </Pressable>
       </ScrollView>
 
-      {/* Sticky køb-bar i bunden */}
+      {/* Verified køb i bunden */}
       <View style={gs.ctaBar}>
         <View style={{ flex: 1 }}>
           <Text style={[gs.muted, { fontSize: 12 }]}>Total</Text>
