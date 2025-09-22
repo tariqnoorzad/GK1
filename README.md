@@ -11,5 +11,5 @@ Installer dependencies:
 npm install
 npx expo start
 
-Demovideo: https://drive.google.com/file/d/1AbXyuP6tNnVCdb2UKtvMiLkuuQVCd26Q/view?usp=sharing
+Demovideo: https://youtu.be/6_FCCXeRJz4
 Repo: https://github.com/tariqnoorzad/GK1
